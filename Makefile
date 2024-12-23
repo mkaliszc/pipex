@@ -1,13 +1,25 @@
 NAME = pipex
 
+LCYAN = \033[1;36m
+GREEN = \033[0;32m
+LGREEN = \033[1;32m
+LRED = \033[1;31m
+RESET = \033[0m
+GRAY = \033[90m
+PURPLE = \033[0;35m
+
+INFO = $(LCYAN)/INFO/$(RESET)
+CLEANING = $(LRED)[DELETING]$(RESET)
+SUCCESS = $(LGREEN)[SUCCESS]$(RESET)
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinclude
 
 SRC_DIR = src
 OBJ_DIR = obj
-LIB_DIR = src/octolib
+LIB_DIR = OctoLIB/
 
-FT = 
+FT = main
 
 SOURCES = $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(FT)))
 OBJS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(FT)))
@@ -18,22 +30,32 @@ all: $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(NAME): $(OBJS) $(LIB)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIB):
-	@$(MAKE) -C $(LIB_DIR)
+	@if [ -d ./$(LIB_DIR) ]; then \
+		echo "$(INFO)$(PURPLE) Updating OctoLIB$(RESET)"; \
+		cd $(LIB_DIR) && git pull; \
+	else \
+		echo "$(INFO)$(PURPLE) Clonning lib...$(RESET)"; \
+		git clone git@github.com:mkaliszc/OctoLIB.git; \
+	fi
+	@echo "$(INFO)$(PURPLE) Making Lib$(RESET)"
+	@$(MAKE) -sC $(LIB_DIR)
+
+$(NAME): $(LIB) $(OBJS)
+	@echo "$(INFO) $(GREEN)Creating $(NAME)$(RESET)"
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB)
+	@echo "$(SUCCESS)"
 
 clean:
-	@$(MAKE) clean -C $(LIB_DIR)
-	@$(MAKE) clean -C $(CHECKER_DIR)
+	@echo "$(CLEANING) $(GRAY)$(OBJ_DIR) in $(LIB_DIR) and local dir$(RESET)"
+	@$(MAKE) clean -sC $(LIB_DIR)
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@$(MAKE) fclean -C $(LIB_DIR)
-	@$(MAKE) fclean -C $(CHECKER_DIR)
+	@echo "$(CLEANING) $(GRAY)$(NAME) and Lib in $(LIB_DIR)$(RESET)"
+	@$(MAKE) fclean -sC $(LIB_DIR)
 	rm -f $(NAME)
 
 
