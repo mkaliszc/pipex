@@ -13,7 +13,7 @@ CLEANING = $(LRED)[DELETING]$(RESET)
 SUCCESS = $(LGREEN)[SUCCESS]$(RESET)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iinclude
+CFLAGS = -Iinclude
 
 SRC_DIR = src
 OBJ_DIR = obj
