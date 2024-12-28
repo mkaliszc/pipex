@@ -13,7 +13,7 @@ CLEANING = $(LRED)[DELETING]$(RESET)
 SUCCESS = $(LGREEN)[SUCCESS]$(RESET)
 
 CC = cc
-CFLAGS = -Iinclude
+CFLAGS = -Wall -Wextra -Werror -Iinclude
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -24,7 +24,7 @@ FT = main
 SOURCES = $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(FT)))
 OBJS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(FT)))
 
-LIB = $(LIB_DIR)/libft.a
+LIB = $(LIB_DIR)libft.a
 
 all: $(NAME)
 
