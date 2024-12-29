@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:11:32 by mkaliszc          #+#    #+#             */
-/*   Updated: 2024/12/28 23:57:25 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2024/12/29 02:26:43 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef	struct s_data
 	char	*infile;
 	char	*outfile;
 	int		nbr_of_pipe;
-	t_cmd 	**cmd_args;
+	t_cmd 	*cmd_args;
 	int		**pipes_fd;
 	pid_t	pid;
 }			t_data;

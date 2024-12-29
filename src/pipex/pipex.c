@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:44:30 by mkaliszc          #+#    #+#             */
-/*   Updated: 2024/12/29 01:15:09 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2024/12/29 02:26:24 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ void	handle_fork(t_data *data, int argc, char **envp, int index)
 	else if (index == argc - 1)
 		last_child();
 	else
-	{
-		// cas general
-	}
+		inter_child();
 }
 
 void	classic_way(t_data *data, int argc, char **envp)
@@ -67,6 +65,7 @@ void	classic_way(t_data *data, int argc, char **envp)
 			waitpid(data->pid, NULL, 0);
 		else
 			handle_fork(data, argc, envp, i);
+		data->cmd_args = data->cmd_args->next;
 		i++;
 	}
 	// clean open pipes etc
