@@ -6,13 +6,13 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:44:30 by mkaliszc          #+#    #+#             */
-/*   Updated: 2024/12/28 03:00:53 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2024/12/29 01:15:09 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	**init_pipes(t_data *data, int argc, char **argv)
+int	**init_pipes(t_data *data, int argc)
 {
 	int	i;
 	int	**pipes_fd;
@@ -36,16 +36,29 @@ int	**init_pipes(t_data *data, int argc, char **argv)
 	return(pipes_fd);
 }
 
-void	classic_way(t_data *data, int argc, char **argv, char **envp)
+void	handle_fork(t_data *data, int argc, char **envp, int index)
+{
+	if (index == 2)
+		first_child();
+	else if (index == argc - 1)
+		last_child();
+	else
+	{
+		// cas general
+	}
+}
+
+void	classic_way(t_data *data, int argc, char **envp)
 {
 	int	main_id;
 	int	i;
 	
-	data->pipes_fd = init_pipes(data, argc, argv);
+	data->pipes_fd = init_pipes(data, argc);
 	if (data->pipes_fd == NULL)
 		exit(1);
 	main_id = getpid();
-	while (i < argc - 3)
+	i = 2;
+	while (i < argc - 1)
 	{
 		data->pid = fork();
 		if (data->pid < 0)
@@ -53,7 +66,7 @@ void	classic_way(t_data *data, int argc, char **argv, char **envp)
 		if (getpid() == main_id)
 			waitpid(data->pid, NULL, 0);
 		else
-			handle_fork(); // handle children 
+			handle_fork(data, argc, envp, i);
 		i++;
 	}
 	// clean open pipes etc

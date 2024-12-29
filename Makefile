@@ -19,7 +19,8 @@ SRC_DIR = src
 OBJ_DIR = obj
 LIB_DIR = OctoLIB/
 
-FT = main
+FT = main \
+	parsing/parsing \
 
 SOURCES = $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(FT)))
 OBJS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(FT)))

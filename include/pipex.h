@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:11:32 by mkaliszc          #+#    #+#             */
-/*   Updated: 2024/12/28 02:44:01 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2024/12/28 23:57:25 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct s_cmd
 {
 	char	**cmd; // split pour les args exemple "ls" "-l"
-	t_cmd	*next;
+	struct s_cmd	*next;
 }			t_cmd;
 
 typedef	struct s_data
@@ -33,5 +33,7 @@ typedef	struct s_data
 	int		**pipes_fd;
 	pid_t	pid;
 }			t_data;
+
+void	init_data(t_data *data, int argc, char **argv);
 
 #endif
