@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:44:30 by mkaliszc          #+#    #+#             */
-/*   Updated: 2024/12/29 02:26:24 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2024/12/30 21:05:42 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int	**init_pipes(t_data *data, int argc)
 void	handle_fork(t_data *data, int argc, char **envp, int index)
 {
 	if (index == 2)
-		first_child();
+		first_child(data);
 	else if (index == argc - 1)
-		last_child();
+		last_child(data);
 	else
-		inter_child();
+		inter_child(data);
 }
 
 void	classic_way(t_data *data, int argc, char **envp)
