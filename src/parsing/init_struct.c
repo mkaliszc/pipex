@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 20:41:16 by mkaliszc          #+#    #+#             */
-/*   Updated: 2024/12/29 02:40:55 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/02 21:53:16 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ t_cmd	*create_node(char *content)
 	
 	new = malloc(sizeof(t_cmd));
 	if (new == NULL)
-		return ;
+		return (NULL);
 	new->cmd = ft_split(content, ' ');
 	new->next = NULL;
+	return (new);
 }
 
 void	ft_add_cmd(t_cmd *lst, t_cmd *new)
@@ -32,7 +33,6 @@ void	ft_add_cmd(t_cmd *lst, t_cmd *new)
 	while (pos->next != NULL)
 		pos = pos->next;
 	pos->next = new;
-	new->next = NULL;
 }
 
 void	init_data(t_data *data, int argc, char **argv)
@@ -44,7 +44,10 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->nbr_of_pipe = argc - 4;
 	data->cmd_args = create_node(argv[2]);
 	if (data->cmd_args == NULL)
-		return(ft_printf("Error while creating the cmd_args"));
+	{
+		ft_printf("Error while creating the cmd_args");
+		return ;
+	}
 	i = 3;
 	while (i < argc - 1)
 	{
