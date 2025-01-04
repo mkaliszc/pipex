@@ -6,11 +6,11 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:11:32 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/02 20:36:56 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/04 21:19:38 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef PIPEX_H
+#ifndef PIPEX_H
 # define PIPEX_H
 
 # include "../OctoLIB/include/libft.h"
@@ -25,14 +25,14 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }			t_cmd;
 
-typedef	struct s_data
+typedef struct s_data
 {
 	char	*infile;
 	int		infile_fd;
 	char	*outfile;
 	int		outfile_fd;
 	int		nbr_of_pipe;
-	t_cmd 	*cmd_args;
+	t_cmd	*cmd_args;
 	int		**pipes_fd;
 	pid_t	*pid;
 	char	*path;
@@ -43,6 +43,7 @@ void	first_child(t_data *data);
 void	last_child(t_data *data);
 void	inter_child(t_data *data, int i);
 void	classic_way(t_data *data, int argc, char **envp);
+void	free_pipex(t_data *data);
 char	*get_path(char **cmd, char **envp);
 
 #endif

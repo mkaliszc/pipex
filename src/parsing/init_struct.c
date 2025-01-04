@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 20:41:16 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/04 18:18:35 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/04 21:05:10 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_cmd	*create_node(char *content)
 {
 	t_cmd	*new;
-	
+
 	new = malloc(sizeof(t_cmd));
 	if (new == NULL)
 		return (NULL);
@@ -27,7 +27,6 @@ t_cmd	*create_node(char *content)
 void	ft_add_cmd(t_cmd *lst, t_cmd *new)
 {
 	t_cmd	*pos;
-
 
 	pos = lst;
 	while (pos->next != NULL)
