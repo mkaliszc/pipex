@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:11:32 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/04 21:19:38 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/04 22:39:13 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ typedef struct s_data
 	char	*path;
 }			t_data;
 
-void	init_data(t_data *data, int argc, char **argv);
+int		init_data(t_data *data, int argc, char **argv);
 void	first_child(t_data *data);
 void	last_child(t_data *data);
 void	inter_child(t_data *data, int i);
 void	classic_way(t_data *data, int argc, char **envp);
 void	free_pipex(t_data *data);
+void	close_all_pipes(t_data *data);
+void	free_lst(t_cmd *start);
 char	*get_path(char **cmd, char **envp);
 
 #endif

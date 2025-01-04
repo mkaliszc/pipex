@@ -22,6 +22,7 @@ LIB_DIR = OctoLIB/
 FT = main \
 	parsing/init_struct parsing/command \
 	pipex/handle_child pipex/pipex \
+	clean/free_pipex \
 
 SOURCES = $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(FT)))
 OBJS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(FT)))
