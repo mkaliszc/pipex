@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:11:32 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/04 22:39:13 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/04 23:50:23 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_cmd
 {
 	char			**cmd;
 	struct s_cmd	*next;
+	struct s_cmd	*previous;
 }			t_cmd;
 
 typedef struct s_data
@@ -47,5 +48,6 @@ void	free_pipex(t_data *data);
 void	close_all_pipes(t_data *data);
 void	free_lst(t_cmd *start);
 char	*get_path(char **cmd, char **envp);
+char	*validate_cmd(char **cmd, char **envp);
 
 #endif

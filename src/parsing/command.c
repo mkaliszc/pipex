@@ -6,11 +6,19 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:43:00 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/04 21:04:56 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/04 23:41:32 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+char	*validate_cmd(char **cmd, char **envp)
+{
+	if (access(cmd[0], X_OK) == 0)
+		return (cmd[0]);
+	else
+		return(get_path(cmd, envp));
+}
 
 char	*get_path(char **cmd, char **envp)
 {
@@ -33,8 +41,9 @@ char	*get_path(char **cmd, char **envp)
 			ft_free_char_tab(all_paths);
 			return (path);
 		}
+		free(path);
 		i++;
 	}
-	free(path);
+	ft_free_char_tab(all_paths);
 	return (NULL);
 }

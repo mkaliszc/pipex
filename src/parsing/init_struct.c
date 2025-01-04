@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 20:41:16 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/04 22:41:03 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/04 23:50:06 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_cmd	*create_node(char *content)
 	if (new == NULL)
 		return (NULL);
 	new->cmd = ft_split(content, ' ');
+	new->previous = NULL;
 	new->next = NULL;
 	return (new);
 }
@@ -34,6 +35,7 @@ int	ft_add_cmd(t_cmd *lst, t_cmd *new)
 	while (pos->next != NULL)
 		pos = pos->next;
 	pos->next = new;
+	new->previous = pos;
 	return(0);
 }
 

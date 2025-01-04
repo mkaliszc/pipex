@@ -49,10 +49,18 @@ void	handle_fork(t_data *data, int argc, char **envp, int index)
 		inter_child(data, index);
 	close_all_pipes(data);
 	free_pipex(data);
-	data->path = get_path(data->cmd_args->cmd, envp);
+	data->path = validate_cmd(data->cmd_args->cmd, envp);
+	if (data->path == NULL)
+	{
+		free_lst(data->cmd_args);
+		free(data);
+		perror("Command not found");
+		exit(1);
+	}
 	if (execve(data->path, data->cmd_args->cmd, envp) < 0)
 	{
-		free(data->path);
+		free_lst(data->cmd_args);
+		free(data);
 		exit(1);
 	}
 }

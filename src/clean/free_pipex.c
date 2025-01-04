@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 19:36:58 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/04 22:45:03 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/04 23:54:10 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	free_lst(t_cmd *start)
 {
 	t_cmd	*tmp;
 
+	while(start->previous != NULL)
+		start = start->previous;
 	tmp = start;
 	while (tmp != NULL)
 	{
