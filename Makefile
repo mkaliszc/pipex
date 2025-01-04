@@ -37,7 +37,8 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 $(LIB):
 	@if [ -d ./$(LIB_DIR) ]; then \
 		echo "$(INFO)$(PURPLE) Updating OctoLIB$(RESET)"; \
-		cd $(LIB_DIR) && git pull; \
+		cd $(LIB_DIR) && git fetch -q origin && git reset -q --hard origin/main; \
+		echo "$(GREEN)SUCCESS"; \
 	else \
 		echo "$(INFO)$(PURPLE) Clonning lib...$(RESET)"; \
 		git clone git@github.com:mkaliszc/OctoLIB.git; \
