@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 20:41:16 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/04 23:50:06 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/05 00:17:54 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ int	ft_add_cmd(t_cmd *lst, t_cmd *new)
 {
 	t_cmd	*pos;
 
-	if(!new || !lst)
+	if (!new || !lst)
 		return (1);
 	pos = lst;
 	while (pos->next != NULL)
 		pos = pos->next;
 	pos->next = new;
 	new->previous = pos;
-	return(0);
+	return (0);
 }
 
 int	init_data(t_data *data, int argc, char **argv)
@@ -49,7 +49,7 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->outfile_fd = -1;
 	data->nbr_of_pipe = argc - 4;
 	data->pid = malloc(sizeof(pid_t) * (data->nbr_of_pipe + 1));
-	if(!data->pid)
+	if (!data->pid)
 		return (ft_putstr_fd("Error while creating the pid tab", 2), 1);
 	data->cmd_args = create_node(argv[2]);
 	if (data->cmd_args == NULL)
@@ -61,7 +61,7 @@ int	init_data(t_data *data, int argc, char **argv)
 	i = 3;
 	while (i < argc - 1)
 	{
-		if(ft_add_cmd(data->cmd_args, create_node(argv[i])))
+		if (ft_add_cmd(data->cmd_args, create_node(argv[i])))
 			return (free(data->pid), free_lst(data->cmd_args), 1);
 		i++;
 	}
