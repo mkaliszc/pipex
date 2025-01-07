@@ -21,7 +21,7 @@ LIB_DIR = OctoLIB/
 
 FT = main \
 	parsing/init_struct parsing/command \
-	pipex/handle_child pipex/pipex \
+	pipex/handle_child pipex/pipex pipex/handle_heredoc \
 	clean/free_pipex \
 
 SOURCES = $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(FT)))

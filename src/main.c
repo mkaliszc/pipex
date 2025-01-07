@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:11:06 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/05 00:16:26 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/07 03:14:21 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	main(int argc, char **argv, char **envp)
 		free(data);
 		return (1);
 	}
-	if (ft_strncmp(data->infile, "here_doc", 8))
-		handle_here_doc(data, argc, envp);
+ 	if (ft_strncmp(data->infile, "here_doc", 8) == 0)
+		handle_here_doc(argv[2]);
 	else
 		classic_way(data, argc, envp);
 	return (0);
