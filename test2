@@ -1,0 +1,9 @@
+total 36
+drwxr-xr-x 2 mkaliszc 2024_le-havre    21 Dec 21 19:11 include
+-rw-r--r-- 1 mkaliszc 2024_le-havre  1547 Jan  7 03:14 Makefile
+drwxr-xr-x 5 mkaliszc 2024_le-havre    61 Jan  8 00:28 obj
+drwxr-xr-x 6 mkaliszc 2024_le-havre   103 Jan  8 00:28 OctoLIB
+-rwxr-xr-x 1 mkaliszc 2024_le-havre 27208 Jan  8 00:28 pipex
+drwxr-xr-x 5 mkaliszc 2024_le-havre    61 Jan  2 17:20 src
+-rw-r--r-- 1 mkaliszc 2024_le-havre    11 Jan  7 19:47 test1
+-rw-r--r-- 1 mkaliszc 2024_le-havre     0 Jan  8 00:28 test2
