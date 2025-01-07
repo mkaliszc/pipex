@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 20:41:16 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/07 01:59:04 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/08 00:24:53 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,12 @@ int	init_data(t_data *data, int argc, char **argv)
 
 	data->infile = argv[1];
 	data->infile_fd = -1;
-	data->outfile = argv[argc - 1];
+	data->out = argv[argc - 1];
 	data->outfile_fd = -1;
 	data->nbr_of_pipe = argc - 4;
-	data->pid = malloc(sizeof(pid_t) * (data->nbr_of_pipe + 1));
-	if (!data->pid)
-		return (ft_putstr_fd("Error while creating the pid tab", 2), 1);
 	data->cmd_args = create_node(argv[2]);
 	if (data->cmd_args == NULL)
 	{
-		free(data->pid);
 		ft_putstr_fd("Error while creating the cmd_args", 2);
 		return (1);
 	}
@@ -62,7 +58,7 @@ int	init_data(t_data *data, int argc, char **argv)
 	while (i < argc - 1)
 	{
 		if (ft_add_cmd(data->cmd_args, create_node(argv[i])))
-			return (free(data->pid), free_lst(data->cmd_args), 1);
+			return (free_lst(data->cmd_args), 1);
 		i++;
 	}
 	return (0);

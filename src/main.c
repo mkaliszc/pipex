@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:11:06 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/07 03:14:21 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/07 23:57:18 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ int	main(int argc, char **argv, char **envp)
 		free(data);
 		return (1);
 	}
- 	if (ft_strncmp(data->infile, "here_doc", 8) == 0)
-		handle_here_doc(argv[2]);
+	if (ft_strncmp(data->infile, "here_doc", 8) == 0)
+		handle_here_doc(argv[2], data);
 	else
-		classic_way(data, argc, envp);
+		data->here_doc = false;
+	classic_way(data, envp);
 	return (0);
 }

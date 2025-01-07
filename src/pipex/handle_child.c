@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:08:34 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/04 22:52:36 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/08 00:24:30 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ void	handle_file_opening(t_data *data, bool input)
 		perror("Error encountered while oppening the infile");
 		exit(1);
 	}
-	data->outfile_fd = open(data->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (data->here_doc == true)
+		data->outfile_fd = open(data->out, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	else
+		data->outfile_fd = open(data->out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (data->outfile_fd < 0 && input == false)
 	{
 		close_all_pipes(data);
 		free_pipex(data);
-		perror("Error encountered while oppening the outfile");
+		perror("Error encountered while opening the outfile");
 		exit(EXIT_FAILURE);
 	}
 }
