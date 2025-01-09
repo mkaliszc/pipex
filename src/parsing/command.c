@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:43:00 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/05 00:16:48 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/09 00:59:58 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*validate_cmd(char **cmd, char **envp)
 {
+	if (cmd[0] == NULL)
+		return (NULL);
 	if (access(cmd[0], X_OK) == 0)
 		return (cmd[0]);
 	else

@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 19:36:58 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/07 23:44:15 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/09 01:05:28 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	free_lst(t_cmd *start)
 	while (tmp != NULL)
 	{
 		tmp = start->next;
-		ft_free_char_tab(start->cmd);
+		if (start->cmd[0] == NULL)
+			free(start->cmd);
+		else
+			ft_free_char_tab(start->cmd);
 		free(start);
 		start = tmp;
 	}

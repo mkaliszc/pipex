@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 20:41:16 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/08 00:24:53 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/09 00:59:16 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	init_data(t_data *data, int argc, char **argv)
 	i = 3;
 	while (i < argc - 1)
 	{
-		if (ft_add_cmd(data->cmd_args, create_node(argv[i])))
+		if (ft_add_cmd(data->cmd_args, create_node(argv[i])) == 1)
 			return (free_lst(data->cmd_args), 1);
 		i++;
 	}
