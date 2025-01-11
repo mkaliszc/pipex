@@ -6,7 +6,7 @@
 /*   By: mkaliszc <mkaliszc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:08:34 by mkaliszc          #+#    #+#             */
-/*   Updated: 2025/01/08 00:24:30 by mkaliszc         ###   ########.fr       */
+/*   Updated: 2025/01/11 01:48:16 by mkaliszc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void	handle_file_opening(t_data *data, bool input)
 	if (data->outfile_fd < 0 && input == false)
 	{
 		close_all_pipes(data);
+		free_lst(data->cmd_args);
 		free_pipex(data);
+		free(data);
 		perror("Error encountered while opening the outfile");
 		exit(EXIT_FAILURE);
 	}
